@@ -1,0 +1,21 @@
+{
+    "students" : {
+        "link" : "localhost:3000/students",
+        "description" : "zwraca listę minimum 10 obiektów o strukturze" 
+    },
+    
+    "student_id" : {
+        "link" : "localhost:3000/students/:id",
+        "description" : "zwraca studenta z określonym identyfikatorem lub 404" 
+    },
+
+    "subjects" : {
+        "link" : "localhost:3000/subjects",
+        "description" : "zwraca listę minimum 10 przedmiotów szkolnych w formacie " 
+    },
+
+    "subjects_id" : {
+        "link" : "localhost:3000/subjects/:id",
+        "description" : "zwraca przedmiot z określonym identyfikatorem lub 404" 
+    }
+}
