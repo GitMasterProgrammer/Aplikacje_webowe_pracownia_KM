@@ -47,10 +47,7 @@ router.get('/students/:id', async (req, res) => {
     } else{
         res.statusCode = 200
         res.end(
-            JSON.stringify({
-                "Error":404,
-                "Message": "Nie ma takiego ucznia"
-            })
+            JSON.stringify(element_to_return)
         )
     }
 
