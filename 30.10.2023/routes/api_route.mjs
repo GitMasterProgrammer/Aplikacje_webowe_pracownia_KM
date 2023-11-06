@@ -1,5 +1,6 @@
 import express from 'express';
 import { createConnection } from 'mysql2/promise';
+import { promises as rs } from 'fs';
 
 const dbConfig = {
   host: 'localhost',
@@ -9,6 +10,13 @@ const dbConfig = {
 };
 
 const router = express.Router();
+
+router.get('/', async (req, res) => {
+    res.statusCode = 200
+    res.setHeader("Content-Type", 'text')
+    const json_file = await rs.readFile('return.json'); 
+    res.end(json_file)
+})
 
 router.get('/students/:id', async (req, res) => {
   const id = req.params.id;
