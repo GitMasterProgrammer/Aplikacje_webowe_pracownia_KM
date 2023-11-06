@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 import {apiRouter} from './routes/api_route.mjs'
 import {contactRouter} from './routes/contact_route.mjs'
 import bodyParser from 'body-parser';
+import { homeRouter } from './routes/home_route.mjs';
+
 const port = 3000
 const app = express()
 const __filename = fileURLToPath(import.meta.url);
@@ -17,14 +19,7 @@ app.use(bodyParser.json());
 app.use('/api', apiRouter)
 
 app.use('/static', express.static(path.join(__dirname, 'public/js')))
-
-app.get('/', async (req, res) => {
-    res.statusCode = 200
-    res.setHeader("Content-Type", 'text/html')
-    const html_main = await rs.readFile('templates/index.html')
-    res.end(html_main)
-})
-
+app.use('/', homeRouter)
 app.use('/kontakt', contactRouter)
 
 
