@@ -25,9 +25,9 @@ router.get('/students/:id', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Wystąpił błąd podczas pobierania danych' });
-  } finally {
-    connection.end();
-  }
+  } 
+  connection.end();
+  
 });
 
 router.get('/students', async (req, res) => {
@@ -39,9 +39,9 @@ router.get('/students', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Wystąpił błąd podczas pobierania danych' });
-  } finally {
+  } 
     connection.end();
-  }
+  
 });
 
 router.get('/subjects/:id', async (req, res) => {
@@ -59,9 +59,9 @@ router.get('/subjects/:id', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Wystąpił błąd podczas pobierania danych' });
-  } finally {
-    connection.end();
-  }
+  } 
+  connection.end();
+  
 });
 
 export { router as apiRouter };
