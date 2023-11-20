@@ -1,10 +1,18 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import { promises as fs } from 'fs';
-const dbName = "school";
-const pass = "admin".toString();
 
-const url = `mongodb+srv://admin:${pass}@cluster01.tmbhxm1.mongodb.net/?retryWrites=true&w=majority`;
+const filePath = '.env';
+
+const jsonObject = await fs.readFile(filePath);
+
+const envConfig = JSON.parse(jsonObject.toString())
+
+const dbName = envConfig.dbName;
+const pass = envConfig.password;
+const user = envConfig.userName;
+
+const url = `mongodb+srv://${user}:${pass}@cluster01.tmbhxm1.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
 
 const router = express.Router();
