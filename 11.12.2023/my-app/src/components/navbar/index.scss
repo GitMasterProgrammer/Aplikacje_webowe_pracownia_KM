@@ -1,0 +1,17 @@
+nav{
+    background-color: white;
+    border-bottom: 1px solid #e5e5e5;
+
+    ul{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    li{
+        a{
+            &:hover{
+                color: #000;
+            }
+        }
+    }
+}
