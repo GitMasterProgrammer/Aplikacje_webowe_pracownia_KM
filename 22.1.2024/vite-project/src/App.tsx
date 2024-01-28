@@ -6,6 +6,7 @@ import { routes } from './helpers';
 
 function App() {
   return (
+
     <Router>
       <Navbar />
       <Routes>
