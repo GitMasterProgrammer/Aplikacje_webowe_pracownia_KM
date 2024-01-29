@@ -1,0 +1,18 @@
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import {routes} from "@/helpers";
+
+export default function App() {
+    return (
+        <Router>
+            <Navbar />
+            <Routes>
+                {routes.map((route) => (
+                    <Route key={route.path} path={route.path} element={route.element} />
+                ))}
+            </Routes>
+            <Footer />
+        </Router>
+    )
+}
