@@ -8,10 +8,10 @@ export default function Navbar() {
         App name
       </div>
         <nav>
-            <ul>
+            <ul className="navbar-nav">
                 {routes.map((route) => (
-                    <li key={route.path}>
-                        <Link to={route.path}>{route.label}</Link>
+                    <li className="nav-item" key={route.path}>
+                        <Link className="nav-link" to={route.path}>{route.label}</Link>
                     </li>
                 ))}
             </ul>
