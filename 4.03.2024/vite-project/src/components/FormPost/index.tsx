@@ -5,6 +5,15 @@ function FormPost() {
   const [post, setPost] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [title, setTitle] = useState<string>('');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = event.target;
+    setSelectedCategories(prev => {
+      const updatedCategories = checked ? [...prev, value] : prev.filter(category => category !== value);
+      return updatedCategories;
+    });
+  };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -22,8 +31,23 @@ function FormPost() {
     });
 
     const data = await response.json();
-    console.log(data);
-
+    const postId = data.id
+    
+    selectedCategories.forEach(element => {
+      const response_category = fetch('http://localhost:3000/api/CategoryOnPost', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          postId: postId,
+          categoryId: parseInt(element),
+        }),
+      });
+  
+      
+    });
+    console.log(data)
   };
 
   return (
@@ -34,7 +58,7 @@ function FormPost() {
 
       <h2>Choose categories describing your post</h2>
 
-      <CategoryCheckboxes />
+      <CategoryCheckboxes onChange={handleCheckboxChange}/>
 
       <label>
         Post title <input value={title} onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}/>

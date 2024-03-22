@@ -5,9 +5,12 @@ interface Category {
   id : string
 }
 
-const CategoryCheckboxes: React.FC = () => {
+interface PropsCheckbox{
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+function CategoryCheckboxes(props: PropsCheckbox){
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
@@ -15,14 +18,6 @@ const CategoryCheckboxes: React.FC = () => {
       .then((data: Category[]) => setCategories(data));
   }, []);
 
-  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = event.target;
-    setSelectedCategories((prev) =>
-      checked ? [...prev, value] : prev.filter((category) => category !== value)
-    );
-
-    console.log(selectedCategories)
-  };
 
   return (
     <div>
@@ -33,7 +28,7 @@ const CategoryCheckboxes: React.FC = () => {
               type="checkbox"
               name={category.name}
               value={category.id}
-              onChange={handleCheckboxChange}
+              onChange={props.onChange}
             />
             {category.name}
           </label>
